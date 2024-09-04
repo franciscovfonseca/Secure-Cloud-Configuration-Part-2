@@ -13,48 +13,123 @@
 
 <br>
 
-In the previous labs we performed some **Incident Response**, and we even **Remediated some Vulnerabilities** like Hardening the NSGs.
+In this Lab we’re going to Implement NIST 800-53 Control SC-7 - Boundary Protection.
 
-We also **Captured our Environment's Traffic** in an Insecured State for 24 hours & **Recorded our Security Metrics**.
+In the previous Lab we looked through the different Security Recommendations, Regulatory Compliance & Microsoft Defender for Cloud.
 
-<br>
-
-In this next step of our Project we’ll work towards **Securing our Environment**.
+We analyzed a few Vulnerabilities in our Cloud Environment and Resources ➜ so the next step is to work on Implementing this Security Control:
 
 <br>
 
-Basically in this lab we’re going to:
-
-  -	Look at Microsoft Defender for Cloud’s **Secure Score**.
-    
-  -	Look at Microsoft Defender for Cloud’s **Recommendations**, and learn what that is.
-    
-  -	Enable MDC’s **Regulatory Compliance for NIST 800-53**.
+![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
 
 <br>
 
->   <details close> 
->   
-> **<summary> 💭 Reminder</summary>**
-> 
-> If you remember ➜ **NIST 800-53** is the **Security and Privacy Control Family**.
-> 
-> It’s basically just a really large **Catalog of Controls** that we can use to either **Evaluate** or help **Secure our Environment**.
-> 
-> When we enable the **NIST 800-53 Regulatory Compliance** in **Azure**:
->   
->  - It’s going to show us things that we can do in Azure to **Secure our Environment** ➜ that align with **NIST 800-53 Controls**.
-> 
-> It gives us a better intuition of What NIST 800-53 is, How it’s Used and Why it’s Useful.
->   
->   </details>
+In this Lab we’re going to:
+
+-	Configure a Network Security Group on our Subnet.
+  
+-	Implement Private Link & Private Endpoints on our Storage Account & Key Vault.
+  
+-	Enable the Built-In Firewall on our Storage Account & Key Vault.
+
+<br>
+
+<br>
+
+  <details close> 
+  
+**<summary> 💡 Refresher</summary>**
+
+<br>
+
+To give you an idea of how our Environment has evolved over the Previous Labs:
+
+➡️ Originally we had our Virtual Machines, Storage Account & Key Vault deployed and exposed to the Public Internet in an Insecure Way.
+
+➡️ We added NSGs to our VMs ➜ but they were configured to be wide-open on purpose so bad actors would find them.
+
+<br>
+
+So this was our Initial Configuration:
+
+<br>
+
+![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+
+<br>
+
+When we were working our Incidents ➜ there were a lot of Brute-Force Events.
+
+To mitigate those instances and go through the Incident Management Lifecycle ➜ we ended up Hardening our NSGs.
+
+We configured the NSGs to only allow Inbound Traffic from our own Personal Computer:
+
+<br>
+
+![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+
+<br>
+
+Our Storage Account & Key Vault are still exposed to the Public Internet though.
+
+<br>
+
+So what we’re going to do in this Lab is:
+
+<br>
+
+❶ Apply another NSG to our Subnet ➜ since the Security Control is requesting it.
+
+<br>
+
+❷ Enable Private Endpoint for our Storage Account & our Key Vault
+
+
+- What that does is take them off the Public Internet and makes them accessible only within our Subnet and Virtual Network
+
+- So theoretically only the VMs that are in the Subnet and VNet are going to be able to access those 2 Resources.
+
+<br>
+
+❸ And we’re also going to Enable the Built-in Firewall on these 2 Resources as well to disallow access from the Public Internet.
+
+<br>
+
+<h2></h2>
+
+<br>
+
+So at the end of this Lab our Environment will look something like this:
+
+<br>
+
+![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+
+<br>
+
+Most of the following Vulnerabilities (except for the Azure Firewall on the VNet) should be Remediated:
+
+<br>
+
+![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+
+<br>
+
+And then we’re going to wait another 24 hours and take a Snapshot of our Stats in the Maps.
+
+We'll then compare those new stats with the previous Security Metrics from the when our Environment was Insecure.
+
+<br>
+
+  </details>
 
 <br>
 
 <br>
 
 <details close> 
-<summary> <h2>1️⃣ Inspect MDC Secure Score & Recommendations</h2> </summary>
+<summary> <h2>1️⃣ Configure Azure Private Link & Firewall for our Azure Key Vault</h2> </summary>
 <br>
 
 The first thing we’re going to do is Inspect the [**Microsoft Defender for Cloud Secure Score**](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score?view=o365-worldwide)
