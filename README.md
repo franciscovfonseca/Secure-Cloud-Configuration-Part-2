@@ -4,24 +4,24 @@
 
 <h2 align="center">Securing our Resources: NIST 800-53 SC-7</h2>
 
-<br>
-
 <p align="center">
-<img width="900" src="https://github.com/user-attachments/assets/53d48cbe-2efe-4d07-9540-8a393bcacf84" alt="Banner"/>
+<img width="900" src="https://github.com/user-attachments/assets/a46981ee-3cb0-4494-b188-9bf890a4caae" alt="Banner"/>
 
 <br>
 
 <br>
 
-In this Lab we’re going to Implement NIST 800-53 Control SC-7 - Boundary Protection.
+In this Lab we’re going to Implement **NIST 800-53 Control SC-7 - Boundary Protection**.
 
-In the previous Lab we looked through the different Security Recommendations, Regulatory Compliance & Microsoft Defender for Cloud.
+In the previous Lab we looked through the different **Security Recommendations**, **Regulatory Compliance** & **Microsoft Defender for Cloud**.
 
-We analyzed a few Vulnerabilities in our Cloud Environment and Resources ➜ so the next step is to work on Implementing this Security Control:
+We have already analyzed a few **Vulnerabilities in our Cloud Environment and Resources**.
+
+So the next step is to work on Implementing this **Security Control**:
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+![azure portal](https://github.com/user-attachments/assets/a368d43c-06b0-40d9-a4ec-6ccb7eb1a8ea)
 
 <br>
 
@@ -55,7 +55,7 @@ So this was our Initial Configuration:
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+![azure portal](https://github.com/user-attachments/assets/cb815468-a3d1-4064-a5c2-a5b72165ca34)
 
 <br>
 
@@ -67,7 +67,7 @@ We configured the NSGs to only allow Inbound Traffic from our own Personal Compu
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+![azure portal](https://github.com/user-attachments/assets/eea1ba93-dda9-40dd-81ae-4628130ff254)
 
 <br>
 
@@ -104,7 +104,7 @@ So at the end of this Lab our Environment will look something like this:
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+![azure portal](https://github.com/user-attachments/assets/59b08132-e92c-4344-b72f-1776d903fc16)
 
 <br>
 
@@ -112,7 +112,7 @@ Most of the following Vulnerabilities (except for the Azure Firewall on the VNet
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+![azure portal](https://github.com/user-attachments/assets/a7b8fc32-3990-470b-8b7e-07efc40b77f8)
 
 <br>
 
