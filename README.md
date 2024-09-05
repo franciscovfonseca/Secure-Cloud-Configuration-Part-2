@@ -5,7 +5,7 @@
 <h2 align="center">Securing our Resources: NIST 800-53 SC-7</h2>
 
 <p align="center">
-<img width="900" src="https://github.com/user-attachments/assets/a46981ee-3cb0-4494-b188-9bf890a4caae" alt="Banner"/>
+<img width="900" src="https://github.com/user-attachments/assets/01b8265b-2ff6-4ea2-969c-58eec61c54ce" alt="Banner"/>
 
 <br>
 
@@ -53,9 +53,7 @@ To give you an idea of how our Environment has evolved over the Previous Labs:
 
 So this was our Initial Configuration:
 
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/cb815468-a3d1-4064-a5c2-a5b72165ca34)
+![azure portal](https://github.com/user-attachments/assets/1cee5fb8-aa04-4d5b-af31-56440194db9b)
 
 <br>
 
@@ -65,9 +63,7 @@ To mitigate those instances and go through the Incident Management Lifecycle ➜
 
 We configured the NSGs to only allow Inbound Traffic from our own Personal Computer:
 
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/eea1ba93-dda9-40dd-81ae-4628130ff254)
+![azure portal](https://github.com/user-attachments/assets/a8522ad3-e296-4885-96ad-384560f79ec6)
 
 <br>
 
@@ -102,17 +98,13 @@ So what we’re going to do in this Lab is:
 
 So at the end of this Lab our Environment will look something like this:
 
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/59b08132-e92c-4344-b72f-1776d903fc16)
+![azure portal](https://github.com/user-attachments/assets/c53301c2-058d-43db-a543-8001ce0f4bf7)
 
 <br>
 
 Most of the following Vulnerabilities (except for the Azure Firewall on the VNet) should be Remediated:
 
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/a7b8fc32-3990-470b-8b7e-07efc40b77f8)
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
 <br>
 
@@ -129,111 +121,101 @@ We'll then compare those new stats with the previous Security Metrics from the w
 <br>
 
 <details close> 
-<summary> <h2>1️⃣ Configure Azure Private Link & Firewall for our Azure Key Vault</h2> </summary>
+<summary> <h2>1️⃣ Configure the Firewall & Azure Private Link for our Azure Key Vault</h2> </summary>
 <br>
 
-The first thing we’re going to do is Inspect the [**Microsoft Defender for Cloud Secure Score**](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score?view=o365-worldwide)
+The first thing we’re going to do is Enable the Firewall and Configure Azure Private Link for our Key vault instance.
 
-We’ll go to the **Azure Portal** ➜ open **Microsoft Defender for Cloud**:
+Inside the Azure Portal ➜ click on our ```akv-cyber-lab``` Key Vault instance:
 
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
 <br>
 
->   <details close> 
->   
-> **<summary> 💡 </summary>**
+We’ll first enable the Firewall ➜ so click on the **Networking** blade:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+Under the **Firewalls and virtual networks** tab we’ll:
+
+> ◉ **Disable public access**
 > 
-> Defender for Cloud provides us with a 🛡️ **Secure Score**.
-> 
-> It’s a single metric that we can use to gage our **Security Posture** and how good it is.
->   
->   </details>
+> ☑ **Allow trusted Microsoft services to bypass this firewall**
+
+Click the **Apply** button:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
 <br>
 
-Then we can click on the **Recommendations** blade on the left side:
+✅ Our Key Vault has now the Firewall Enabled
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+<h2></h2>
 
 <br>
 
-The interface will show us all the things that are contributing to our Environment’s **Security Score**.
+Next we’re going to Configure the Private Endpoint for our Key Vault.
 
 <br>
 
   <details close> 
   
-**<summary> 💡 </summary>**
+**<summary> 💡</summary>**
 
-It’ll show us areas that essentially have gaps:
-
-➡️ So we can implement things in Azure & perform some Configurations in order to make our Security Score go Up.
-
-<br>
+This will take it from being totally exposed to the Public Internet ➜ to only being accessible through our Virtual Network and Subnet.
 
   </details>
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+Still inside Networking ➜ this time under the **Private endpoint connections** tab ➜ click on ➕ **Create**:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
 <br>
 
-🔍 We can look through all the different **Recommendations** and get a good sense of what we can do to **Harden our Environment**.
+Under the ❶ **Basics** tab:
+-	Select our ```RG-Cyber-Lab``` **Resource group**
+-	We’ll **Name** it ```PE-AKV```
+-	Select the same **Region** that we’ve been using ➜ ```East US 2```
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
 <br>
 
-<h2></h2>
-<br>
+Now under the ❷ **Resources** tab we’ll set up:
+-	**Connection method**➜ ◉ ```Connect to an Azure resource in my directory``` 
+-	**Resource type** ➜ search for and select ```Microsoft.KeyVault/vaults```
+-	**Resource** ➜ pick the name of your Key Vault instance: ```akv-cyber-lab```
+-	**Target sub-resource** ➜ lab ```vault```
 
-<h3>Inspect MDC Recommendations</h3>
-
-<br>
-
-If we click on ```View recommendations >```:
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
 <br>
 
-It'll show all the things that are contributing to our **Secure Score** ➜ areas in our Environment that essentially have "Gaps".
+Under the ❸ **Virtual Network** tab:
+-	**Virtual Network**➜ pick our VNet ```Lab-Vnet (RG-Cyber-Lab)``` where we’re having everything connect to
+-	**Subnet** ➜ select our ```default``` Subnet
+-	**Private IP configuration**➜ ◉ ```Dynamically allocate IP address```
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+For the ❹ **DNS** tab:
+-	**Integrate with private DNS zone**➜ ◉ ```Yes```
+
+⚠️ Make sure the **Subscription** & **Resource Group** are correct.
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
 <br>
 
-We can implent things in **Azure** ➜ make some Configurations to get our **Secure Score** to go Up.
-
-For example: under ```> Restrict unauthorized network access``` ➜ if we click on the first Recommendation:
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-MDC will give us Recommendations on how we can fix it:
-
-- There's a detailed **Description** of what the Recomendation involves.
-  
-- And there's also the **Remediation Steps** section that breaks down what we have do to Remediate the issue.
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-✅ So we've analysed the **Recommendations** that when fixed would improve our Environmen's **Secure Score**.
+✅ We’ll then just **Review + create** to finish creating the Key Vault’s Private Endpoint.
 
 <br>
 
