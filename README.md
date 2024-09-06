@@ -25,13 +25,13 @@ So the next step is to work on Implementing this **Security Control**:
 
 <br>
 
-In this Lab we’re going to:
+So in this part of our Project we’re going to:
 
--	Configure a Network Security Group on our Subnet.
+-	Configure a **Network Security Group** on our **Subnet**.
   
--	Implement Private Link & Private Endpoints on our Storage Account & Key Vault.
+-	Implement **Private Link & Private Endpoints** on our **Storage Account & Key Vault**.
   
--	Enable the Built-In Firewall on our Storage Account & Key Vault.
+-	Enable the Built-In **Firewall** on our **Storage Account & Key Vault**.
 
 <br>
 
@@ -45,13 +45,13 @@ In this Lab we’re going to:
 
 To give you an idea of how our Environment has evolved over the Previous Labs:
 
-➡️ Originally we had our Virtual Machines, Storage Account & Key Vault deployed and exposed to the Public Internet in an Insecure Way.
+➡️ Originally we had our Virtual Machines, Storage Account & Key Vault deployed and Exposed to the Public Internet in an Insecure Way.
 
 ➡️ We added NSGs to our VMs ➜ but they were configured to be wide-open on purpose so bad actors would find them.
 
 <br>
 
-So this was our Initial Configuration:
+So this was our **Initial Configuration**:
 
 ![azure portal](https://github.com/user-attachments/assets/1cee5fb8-aa04-4d5b-af31-56440194db9b)
 
@@ -59,7 +59,7 @@ So this was our Initial Configuration:
 
 When we were working our Incidents ➜ there were a lot of Brute-Force Events.
 
-To mitigate those instances and go through the Incident Management Lifecycle ➜ we ended up Hardening our NSGs.
+To mitigate those instances and go through the Incident Management Lifecycle ➜ we ended up **Hardening our NSG**s.
 
 We configured the NSGs to only allow Inbound Traffic from our own Personal Computer:
 
@@ -67,7 +67,7 @@ We configured the NSGs to only allow Inbound Traffic from our own Personal Compu
 
 <br>
 
-Our Storage Account & Key Vault are still exposed to the Public Internet though.
+Our Storage Account & Key Vault are still Exposed to the Public Internet though.
 
 <br>
 
@@ -75,11 +75,11 @@ So what we’re going to do in this Lab is:
 
 <br>
 
-❶ Apply another NSG to our Subnet ➜ since the Security Control is requesting it.
+❶ Apply another **NSG** to our Subnet ➜ since the Security Control is requesting it.
 
 <br>
 
-❷ Enable Private Endpoint for our Storage Account & our Key Vault
+❷ Enable **Private Endpoint** for our Storage Account & our Key Vault
 
 
 - What that does is take them off the Public Internet and makes them accessible only within our Subnet and Virtual Network
@@ -88,7 +88,7 @@ So what we’re going to do in this Lab is:
 
 <br>
 
-❸ And we’re also going to Enable the Built-in Firewall on these 2 Resources as well to disallow access from the Public Internet.
+❸ And we’re also going to Enable the Built-in **Firewall** on these 2 Resources as well to disallow access from the Public Internet.
 
 <br>
 
@@ -132,7 +132,7 @@ Inside the Azure Portal ➜ click on our ```akv-cyber-lab``` Key Vault instance:
 
 <br>
 
-We’ll first enable the Firewall ➜ so click on the **Networking** blade:
+We’ll first **Enable the Firewall** ➜ so click on the **Networking** blade:
 
 ![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
@@ -190,8 +190,8 @@ Under the ❶ **Basics** tab:
 Now under the ❷ **Resources** tab we’ll set up:
 -	**Connection method**➜ ◉ ```Connect to an Azure resource in my directory``` 
 -	**Resource type** ➜ search for and select ```Microsoft.KeyVault/vaults```
--	**Resource** ➜ pick the name of your Key Vault instance: ```akv-cyber-lab```
--	**Target sub-resource** ➜ lab ```vault```
+-	**Resource** ➜ pick the name of our Key Vault instance: ```akv-cyber-lab```
+-	**Target sub-resource** ➜ ```vault```
 
 ![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
@@ -215,7 +215,7 @@ For the ❹ **DNS** tab:
 
 <br>
 
-✅ We’ll then just **Review + create** to finish creating the Key Vault’s Private Endpoint.
+✅ We’ll then just **Review + create** to finish creating the Key Vault’s **Private Endpoint**.
 
 <br>
 
@@ -224,192 +224,311 @@ For the ❹ **DNS** tab:
 <h2></h2>
 
 <details close> 
-<summary> <h2>2️⃣ Enable NIST 800-53</h2> </summary>
+<summary> <h2>2️⃣ Configure the Firewall & Azure Private Link for our Azure Storage Account</h2> </summary>
 <br>
 
-> Add [**NIST 800-53: Security and Privacy Controls for Information Systems and Organizations**](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final) to **Microsoft Defender for Cloud**.
-> 
-> 💡 [**Full Publication**](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf).
+Inside the Azure Portal ➜ click on our ```sacyberlab01``` Storage Account instance:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
 <br>
 
-The next thing we’re going to do is **Enable Regulatory Compliance for NIST 800-53**.
+First we’ll click on the **Configuration** blade.
 
-This will basically do the same thing as the **MDC Secure Score Recommendations** ➜ but it’ll do it in the “lens” of **NIST 800-53**.
+For **Allow Blob public access** ➜ we’ll select ◉ ```Disabled```
+
+⚠️ We have to do this in order to satisfy the **NIST 800-53 SC-7** Requirement.
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+Now we'll click on the **Networking** blade ➜ and under the **Firewalls and virtual networks** tab we’ll select:
+-	**Public network access** ➜ ◉ ```Disabled```
+-	**Routing preference** ➜  ◉ ```Microsoft network routing```
+
+Click the 💾 **Save** button
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+✅ The Firewall and VNet setting were successfully saved for our Storage Account.
+
+<h2></h2>
+
+The next step is to Add a Private Endpoint for our ```sacyberlab01``` Storage Account instance.
+
+We’ll go to the **Private endpoint connections** tab ➜ and click on ➕ **Private endpoint**:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+Under the ** ❶ Basics** tab:
+-	Select our ```RG-Cyber-Lab``` **Resource group**
+-	We’ll **Name** it ```PE-Storage```
+-	Make sure it’s in the correct **Region** with the rest of our Resources  ➜ ```East US 2```
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+As for ** ❷ Resources** ➜ this is for our Blob Storage:
+-	So for **Target sub-resource** ➜ select ```blob```
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+Under the ** ❸ Virtual Network** tab:
+-	**Virtual Network**➜ select our VNET ```Lab-Vnet (RG-Cyber-Lab)``` where everything else is in
+-	**Subnet** ➜ select our only ```default``` Subnet
+-	**Private IP configuration**➜ ◉ ```Dynamically allocate IP address```
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+** ❹ DNS** tab:
+-	**Integrate with private DNS zone** ➜ ◉ ```Yesv
+
+⚠️ Again ➜ make sure the **Subscription** & **Resource Group** are correct.
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+✅ And finally we’ll click on **Review + create** to finish creating the Storage Account’s **Private Endpoint**.
+
+<br>
+
+  </details>
+
+<h2></h2>
+
+<details close> 
+<summary> <h2>2️⃣ Observe the Network Watcher Topology for our Region & Resource Group</h2> </summary>
+<br>
+
+Inside the **Azure Portal** ➜ we'll go to **Network Watcher**
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+Click on the **Topology** Blade ➜ and this is our **Topology Page**:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+It shows a Network Diagram of what our Azure Resources look like in our Subscription.
+
+Basically we need to "Filter the Topology" to show the correct Resources ➜ so we'll click on the **Scope** section:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+We'll select:
+- Our **Subscription** ➜ ```Azure Subscription 1```
+- ⚠️ Only the **Resource Group** ```RG-Cyber-Lab``` ➜ because that's essentially where all our Resources are.
+- Our Environment's Resources' **Location** ➜ ```East US 2```
+
+Then we'll click **Save**
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+This is basically all the Resources we have inside of our Subnet:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+<h2></h2>
+
+We'll now observe if the Key Vault and Storage Account Private Endpoints are shown in our Network Topology Diagram.
+
+If we click the ➕ on the Private Endpoint for our Azure Key Vault:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+✅ We can see that it is associated with the Subnet which is attached to our Key Vault instance ```akv-cyber-lab-9999```
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+We can click the ➕ on the Private Endpoint for our Azure Storage Account:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+✅ And we can see that it is inside of our Default Subnet and attached to our Storage Account ```sacyberlab999```
+
+<br>
+
+  </details>
+
+<h2></h2>
+
+<details close> 
+<summary> <h2>3️⃣ Check the IP addresses of our Key Vault & Storage Account inside our Windows VM</h2> </summary>
+<br>
+
+The next thing we're going to do is login to our **Windows VM** and make sure **Private Endpoint** is working.
+
+So inside the **Azure Portal** ➜ we'll go our ```windows-vm``` ➜ and copy its **Public IP Address**:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+We'll open up Microsoft Remote Desktop ➜ and then attempt to connect to the ```windows-vm```
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+Once we've RDP connected into our Windows VM ➜ we'll open **Powershell**
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+The next step is to check the **Private IP Addresses** of our Key Vault and Storage Account instances by using ```nslookup```
+
+📝 This is how we resolve FQDN or the name of any host to IP Addresses.
+
+So we'll go back to the **Azure Portal** ➜ inside our Key Vault ```akv-cyber-lab``` ➜ and copy its **FQDN**:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+We'll go back to the Windows VM ➜ in **Powershell** type in ```nslookup``` and paste the Key Vault's **FQDN** ➜ press Enter:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+It resolves to ```10.0.0.5```
+
+This means our **Private Endpoint** is working and our Key Vault is actually **within the same VNET / Subnet as our Windows VM** (our at least it is accessible from there).
+
+✅ So we have confirmed that Key Vault is set up correctly with Private Endpoint.
 
 <br>
 
   <details close> 
   
-**<summary> 📌 Refresher</summary>**
+**<summary> 💡 Reminder</summary>**
 
-<br>
+I can see Private Endpoint is working, not because it's resolving to exactly ```10.0.0.5``` ➜ but because it's resolving to a **Private IP Address** within our **Subnet's range**.
 
-[NIST 800-53](https://csrc.nist.gov/projects/cprt/catalog#/cprt/framework/version/SP_800_53_5_1_0/home) is a really large control catalog with a lot of different control families like:
-
--	 Access Control
--	 Identification and Authentication
--	 Incidence Response, etc.
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-These are all different categories ➜ and then inside of these there’s a lot of **Sub-Controls** essentially
-
-For example: inside of **"SC - SYSTEM AND COMMUNICATION PROTECTION"** ➜ there's a lot of different Categories:
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-When we enable NIST 800-53 Regulatory Compliance inside of Defender for Cloud:
-
-  - It’s basically going to look at all the different Controls inside of NIST 800-53
-    
-  - And it'll suggest different things we can do in our Environment that align with, for example, SC-7:
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-Essentially it will suggest different implementations we can do in Azure to bring our Environment "Up to Par" with NIST 800-53.
-
-In a way, show us Gaps in relation to Controls that exist in NIST 800-53.
+If I was resolving to a **Public IP Address** ➜ then we'd have to troubleshoot.
 
   </details>
 
 <br>
 
-To add NIST 800-53:
-
-  - First inside the MDC home page ➜ click on the **Regulatory Compliance** blade on the left side:
+<h2></h2>
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+We'll check our Storage Account's Private Endpoint next.
+
+Back in the **Azure Portal** ➜ we'll go to our Storage Acount ```sacyberlab01```
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
 <br>
 
-  - Then at the top ➜ click on **Manage compliance policies**:
+Scroll down and click on the **Endpoints** blade ➜ copy the **Blob Service FQDN** (the full name of our Storage Account):
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+We'll go back to our Windows VM ➜ type in ```nslookup``` and paste the Storage Account's **FQDN** ➜ press Enter:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
 <br>
 
-  - We'll then click on our ```Azure subscription 1```:
+We get this ```10.0.0.7``` Private IP Address.
+
+✅ So we can confirm that the Private Endpoint for our Storage Account is set up correctly as well
 
 <br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-  - Inside the **Security policy** blade ➜ under **Industry & regulatory standards**  ➜ click on the **"Add more standards"** button:
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-  - Add ```NIST 800-53 R5``` as a **Regulatory Compliance Standard**:
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-- We'll leave the Configuration Settings for the Initiative Assignment as the Default ones ➜ and click **"Create"**
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-The Policy Initiative Assignment takes a few minutes to take effect.
-
-After waiting a while ➜ we can confirm that **NIST 800-53 R5** was successfully assigned to our Subscription ✅
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-
-⚠️ Again ➜ it takes some time for the policy to be added to our Environment.
-
-But eventually it should appear inside of our MDC Dashboard ➜ under **Regulatory compliance**:
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-
-  <details close> 
-  
-**<summary> 📝 Context</summary>**
-
-Basically NIST 800-53 contains a whole bunch of control families with different Controls that you can apply to your Environment.
-
-NIST 800-53 is not specific to any Environment ➜ they're just generalized Controls.
-
-But Microsoft created this NIST 800-53 Policy to map those General Controls to things that we can actually do inside of Azure.
-
-This are the general Control Families defined by NIST:
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-If we expand one of the Control Families ➜ **“AC. Access Control”** for example:
-
-It shows what we can do inside of the Azure Portal to our Resources to be “Compliant” with each individual Sub-Control:
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-Again as an example: for **IR-6(2)** as defined by NIST ➜ there could be some improvements made in our Environment:
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-We can click on the first **Automated assessment** ➜ and MDC will give us Instructions on how to remediate this issue:
-
-<br>
-
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
-
-<br>
-
-If we expand the ```∨ Remediation steps``` ➜ it'll give us the Steps to Take in order to Manually Remidiate this Sub-Control.
 
   </details>
 
+<h2></h2>
 
+<details close> 
+<summary> <h2>4️⃣ Set Up a Network Security Group on the Subnet</h2> </summary>
+<br>
 
-➡️ In our upcoming lab ➜ we're going to implement **SC-7 Boundary Protection**, in order to bring this Control "Up to Compliance".
+The last thing we're going to do is Create a **NSG** and attach it to the actual **Subnet** all our Resources are in.
+
+Inside the **Azure Portal** ➜ search for **Network security groups** ➜ and we're going to ➕ **Create** a new NSG:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+- Make sure it's in the correct **Resource Group** ```RG-Cyber-Lab```
+- We'll **Name** it ```nsg-subnet```
+- The **Region** is ```East US 2```
+
+Click **Review + create**:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+We'll then go to our Virtual Network ```Lab-VNet``` where all of our Resources are:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+Go to the **Subnets** Blade ➜ and select our ```default``` Subnet.
+
+Where it says **Network security group** ➜ we'll select our newly created ```nsg-subnet``` Subnet.
+
+Click **Save**.
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+✅ We have successfully configure a **Network Security Group** on our **Subnet**. 
+
+<br>
+
+<h2></h2>
+
+<br>
+
+We'll now go back to Network Watcher to see everything one more time from a High-Level.
+
+After clicking the **Topology** blade ➜ we'll select the **Scope** to filter what we want to observe:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+
+<br>
+
+Inside our VNet ➜ we can visually see the new **NSG** attached to our **Subnet**:
+
+![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
 
 <br>
 
@@ -426,21 +545,21 @@ If we expand the ```∨ Remediation steps``` ➜ it'll give us the Steps to Take
 <h1>Summary</h1>
 <br>
 
-To recap:
+We have completed this lab ✅
 
-In this lab we Enabled NIST 800-53 Regulatory Compliance Policy.
+Most of the Requirements for **NIST 800-53 SC-7** & Recommendations in **Microsoft Defender for Cloud** were satisfied:
 
-Basically when we did that ➜ Azure looked at our entire Environment and compared it to NIST 800-53 General Control Families:
+- We configured a **Network Security Group** on our Subnet
+
+- Implemented **Private Endpoints** on our **Storage Account & Key Vault**.
+  
+-	And enabled the **Firewall** on our **Storage Account & Key Vault**.
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/9c1cce53-082a-4c9e-b6d5-7da25a14a9d7)
+In the next Lab we're going to Capture our Stats after waiting another 24 hours ➜ now that our Environment has been Hardened and Secured.
 
-<br>
-
-In doing so, it essentially found all the weak spots in our Environment that could be addressed by the **NIST 800-53 Control Catalog**.
-
-And in the next lab we'll start remediating a few of these **Compliance Controls**.
+We'll then compare that Data with the Events we had before.
 
 
 <br>
