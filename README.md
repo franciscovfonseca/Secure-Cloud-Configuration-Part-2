@@ -567,7 +567,7 @@ Most of the Requirements for **NIST 800-53 SC-7** & Recommendations in **Microso
 
 <br>
 
-In the next Lab we're going to Capture our Stats after waiting another 24 hours ➜ now that our Environment has been Hardened and Secured.
+In the next Lab we're going to Capture our Stats after waiting another 24 hours ➜ now that our Environment has been Secured.
 
 We'll then compare that Data with the Events we had before.
 
