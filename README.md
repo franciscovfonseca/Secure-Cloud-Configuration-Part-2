@@ -128,13 +128,13 @@ The first thing we’re going to do is Enable the Firewall and Configure Azure P
 
 Inside the Azure Portal ➜ click on our ```akv-cyber-lab``` Key Vault instance:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/62dccc59-6d80-4bdb-99bb-c12e74df710c)
 
 <br>
 
 We’ll first **Enable the Firewall** ➜ so click on the **Networking** blade:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/b58228e6-89c4-4cbd-bbd2-9a64e6f7519c)
 
 <br>
 
@@ -146,7 +146,7 @@ Under the **Firewalls and virtual networks** tab we’ll:
 
 Click the **Apply** button:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/51bac445-f793-4ca7-acfb-81c93c891fee)
 
 <br>
 
@@ -174,7 +174,7 @@ This will take it from being totally exposed to the Public Internet ➜ to only 
 
 Still inside Networking ➜ this time under the **Private endpoint connections** tab ➜ click on ➕ **Create**:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/721d0b40-d2fa-41b6-bb87-44cf508d2fc6)
 
 <br>
 
@@ -183,7 +183,7 @@ Under the ❶ **Basics** tab:
 -	We’ll **Name** it ```PE-AKV```
 -	Select the same **Region** that we’ve been using ➜ ```East US 2```
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/855e67d5-b964-400a-bb0f-d35b3b901b09)
 
 <br>
 
@@ -193,7 +193,7 @@ Now under the ❷ **Resources** tab we’ll set up:
 -	**Resource** ➜ pick the name of our Key Vault instance: ```akv-cyber-lab```
 -	**Target sub-resource** ➜ ```vault```
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/f1151384-8a12-4092-a1e7-7aa53231aaa8)
 
 <br>
 
@@ -202,7 +202,7 @@ Under the ❸ **Virtual Network** tab:
 -	**Subnet** ➜ select our ```default``` Subnet
 -	**Private IP configuration**➜ ◉ ```Dynamically allocate IP address```
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/5bf3d70b-351d-4173-8439-0d017e700147)
 
 <br>
 
@@ -211,7 +211,7 @@ For the ❹ **DNS** tab:
 
 ⚠️ Make sure the **Subscription** & **Resource Group** are correct.
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/75973fb1-bc0a-4cf7-bbc1-b68c84d043d1)
 
 <br>
 
@@ -229,7 +229,7 @@ For the ❹ **DNS** tab:
 
 Inside the Azure Portal ➜ click on our ```sacyberlab01``` Storage Account instance:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/8e988483-0393-46a1-9b81-d3ce80ee6b6b)
 
 <br>
 
@@ -239,7 +239,7 @@ For **Allow Blob public access** ➜ we’ll select ◉ ```Disabled```
 
 ⚠️ We have to do this in order to satisfy the **NIST 800-53 SC-7** Requirement.
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/16d5222f-f4bc-4c38-8279-0c00205b43b8)
 
 <br>
 
@@ -249,7 +249,7 @@ Now we'll click on the **Networking** blade ➜ and under the **Firewalls and vi
 
 Click the 💾 **Save** button
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/632e7164-0087-433a-ac9a-f7078cabfc9e)
 
 <br>
 
@@ -261,7 +261,7 @@ The next step is to Add a Private Endpoint for our ```sacyberlab01``` Storage Ac
 
 We’ll go to the **Private endpoint connections** tab ➜ and click on ➕ **Private endpoint**:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/fd38f81d-f6b3-4c08-9563-1048f9031539)
 
 <br>
 
@@ -270,14 +270,14 @@ Under the ** ❶ Basics** tab:
 -	We’ll **Name** it ```PE-Storage```
 -	Make sure it’s in the correct **Region** with the rest of our Resources  ➜ ```East US 2```
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/3b080ee1-97fa-4ec5-bea4-bd79c109dd9e)
 
 <br>
 
 As for ** ❷ Resources** ➜ this is for our Blob Storage:
 -	So for **Target sub-resource** ➜ select ```blob```
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/7c885ca9-fc76-410d-8e0e-691769f85afc)
 
 <br>
 
@@ -286,16 +286,16 @@ Under the ** ❸ Virtual Network** tab:
 -	**Subnet** ➜ select our only ```default``` Subnet
 -	**Private IP configuration**➜ ◉ ```Dynamically allocate IP address```
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/09d90313-f0fc-47c2-b3b0-7f66a52db064)
 
 <br>
 
 ** ❹ DNS** tab:
--	**Integrate with private DNS zone** ➜ ◉ ```Yesv
+-	**Integrate with private DNS zone** ➜ ◉ ```Yes```
 
 ⚠️ Again ➜ make sure the **Subscription** & **Resource Group** are correct.
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/88eb8882-665f-45a3-b9d7-63c94bd5bd2f)
 
 <br>
 
@@ -313,13 +313,13 @@ Under the ** ❸ Virtual Network** tab:
 
 Inside the **Azure Portal** ➜ we'll go to **Network Watcher**
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/259fea97-f63b-4ef8-867d-a46b35cdf2b0)
 
 <br>
 
 Click on the **Topology** Blade ➜ and this is our **Topology Page**:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/b26d57ae-a86e-4086-a845-8cd946a10ab3)
 
 <br>
 
@@ -327,7 +327,7 @@ It shows a Network Diagram of what our Azure Resources look like in our Subscrip
 
 Basically we need to "Filter the Topology" to show the correct Resources ➜ so we'll click on the **Scope** section:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/31a8a740-7197-4afe-9e0a-048f9eee9a48)
 
 <br>
 
@@ -338,13 +338,13 @@ We'll select:
 
 Then we'll click **Save**
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/3c4dded3-bb32-4725-aa41-ed2d861180b5)
 
 <br>
 
 This is basically all the Resources we have inside of our Subnet:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/e3483e97-3fc4-4e01-8dcf-a3737265886d)
 
 <br>
 
@@ -352,25 +352,27 @@ This is basically all the Resources we have inside of our Subnet:
 
 We'll now observe if the Key Vault and Storage Account Private Endpoints are shown in our Network Topology Diagram.
 
-If we click the ➕ on the Private Endpoint for our Azure Key Vault:
+If we click the ➕ on the **Private Endpoin**t for our **Azure Key Vault**:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/692f202b-c2cc-4ce5-bdad-98f4e10899e2)
 
 <br>
 
 ✅ We can see that it is associated with the Subnet which is attached to our Key Vault instance ```akv-cyber-lab-9999```
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/f5ab613d-8dd0-43ad-9200-f398e33ff533)
 
 <br>
 
-We can click the ➕ on the Private Endpoint for our Azure Storage Account:
+We can click the ➕ on the **Private Endpoint** for our **Azure Storage Account**:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/d4528335-c3f4-48bd-9a10-cdac08737a66)
 
 <br>
 
 ✅ And we can see that it is inside of our Default Subnet and attached to our Storage Account ```sacyberlab999```
+
+![azure portal](https://github.com/user-attachments/assets/b7484ebf-465d-4151-a67c-678050be03f5)
 
 <br>
 
@@ -386,35 +388,43 @@ The next thing we're going to do is login to our **Windows VM** and make sure **
 
 So inside the **Azure Portal** ➜ we'll go our ```windows-vm``` ➜ and copy its **Public IP Address**:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/d97447a3-b9da-4e44-9b20-6075c2ae4342)
 
 <br>
 
 We'll open up Microsoft Remote Desktop ➜ and then attempt to connect to the ```windows-vm```
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/c13988d6-6238-40f8-93ec-7eabd96ff42f)
 
 <br>
 
 Once we've RDP connected into our Windows VM ➜ we'll open **Powershell**
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/781954bc-7985-4b0d-848d-16d96215a5d1)
 
 <br>
 
 The next step is to check the **Private IP Addresses** of our Key Vault and Storage Account instances by using ```nslookup```
 
-📝 This is how we resolve FQDN or the name of any host to IP Addresses.
+  <details close> 
+  
+**<summary>💡</summary>**
+
+This is how we resolve FQDN or the name of any host to IP Addresses.
+
+<br>
+
+  </details>
 
 So we'll go back to the **Azure Portal** ➜ inside our Key Vault ```akv-cyber-lab``` ➜ and copy its **FQDN**:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/fd8eb455-a414-4d73-af21-94ccdfb2cd4a)
 
 <br>
 
 We'll go back to the Windows VM ➜ in **Powershell** type in ```nslookup``` and paste the Key Vault's **FQDN** ➜ press Enter:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/d618744d-e6be-4d1c-b0d4-a7c1e51b4bfd)
 
 <br>
 
@@ -446,19 +456,19 @@ We'll check our Storage Account's Private Endpoint next.
 
 Back in the **Azure Portal** ➜ we'll go to our Storage Acount ```sacyberlab01```
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/92052d2e-7d5a-4963-8a38-275e1c24a0bc)
 
 <br>
 
 Scroll down and click on the **Endpoints** blade ➜ copy the **Blob Service FQDN** (the full name of our Storage Account):
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/7423abfd-cf30-4d1c-b6c9-fd042d70d21e)
 
 <br>
 
 We'll go back to our Windows VM ➜ type in ```nslookup``` and paste the Storage Account's **FQDN** ➜ press Enter:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/d709f822-6986-452c-9c71-7ad1a021e150)
 
 <br>
 
@@ -473,14 +483,14 @@ We get this ```10.0.0.7``` Private IP Address.
 <h2></h2>
 
 <details close> 
-<summary> <h2>4️⃣ Set Up a Network Security Group on the Subnet</h2> </summary>
+<summary> <h2>4️⃣ Configure a Network Security Group on the Subnet</h2> </summary>
 <br>
 
 The last thing we're going to do is Create a **NSG** and attach it to the actual **Subnet** all our Resources are in.
 
 Inside the **Azure Portal** ➜ search for **Network security groups** ➜ and we're going to ➕ **Create** a new NSG:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/fa7e5295-f6bf-470d-9e77-e204b28df80e)
 
 <br>
 
@@ -490,13 +500,13 @@ Inside the **Azure Portal** ➜ search for **Network security groups** ➜ and w
 
 Click **Review + create**:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/765c8ce9-f3e4-48e3-bcab-4cc1fc095983)
 
 <br>
 
 We'll then go to our Virtual Network ```Lab-VNet``` where all of our Resources are:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/e359e6f5-16c9-48bb-a7d4-3ca25696e427)
 
 <br>
 
@@ -506,7 +516,7 @@ Where it says **Network security group** ➜ we'll select our newly created ```n
 
 Click **Save**.
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/78f9c571-4775-471a-b241-b474097de172)
 
 <br>
 
@@ -522,13 +532,13 @@ We'll now go back to Network Watcher to see everything one more time from a High
 
 After clicking the **Topology** blade ➜ we'll select the **Scope** to filter what we want to observe:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/2ac3798f-9569-47d1-988b-9a3949a234a9)
 
 <br>
 
 Inside our VNet ➜ we can visually see the new **NSG** attached to our **Subnet**:
 
-![azure portal](https://github.com/user-attachments/assets/1a74fb8f-ed49-4806-a3e0-507a3f2cafb1)
+![azure portal](https://github.com/user-attachments/assets/4a8048d4-8bf4-4d7a-9cb7-49675f98d38a)
 
 <br>
 
