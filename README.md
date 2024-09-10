@@ -17,7 +17,7 @@ In the [Previous Lab](https://github.com/franciscovfonseca/Securing-SOC-Environm
 
 We have already analyzed a few **Vulnerabilities in our Cloud Environment and Resources**.
 
-So the next step is to work on Implementing this **Security Control**:
+So the next step is to work on Implementing these **Security Controls**:
 
 <br>
 
