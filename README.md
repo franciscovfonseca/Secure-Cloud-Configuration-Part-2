@@ -11,7 +11,7 @@
 
 <br>
 
-In this Lab we’re going to Implement **NIST 800-53 Control SC-7 - Boundary Protection**.
+In this lab we’re going to Implement **NIST 800-53 Control SC-7 - Boundary Protection**.
 
 In the [Previous Lab](https://github.com/franciscovfonseca/Securing-SOC-Environment-Part-1/blob/main/README.md) we looked through the different **Security Recommendations**, **Regulatory Compliance** & **Microsoft Defender for Cloud**.
 
