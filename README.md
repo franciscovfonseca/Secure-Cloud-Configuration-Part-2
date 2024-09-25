@@ -29,7 +29,7 @@ So in this part of our Project we’re going to:
 
 -	Configure a **Network Security Group** on our **Subnet**.
   
--	Implement **Private Link & Private Endpoints** on our **Storage Account & Key Vault**.
+-	Implement **Azure Private Link** on our **Storage Account & Key Vault**.
   
 -	Enable the Built-In **Firewall** on our **Storage Account & Key Vault**.
 
